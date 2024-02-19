@@ -312,37 +312,53 @@
         What is your prompt for today?
         `;
         
-        // get propmt from API
-        // fetch('link to api', {
-        // ...}
-        // Will return a prompt
-        // since we dont have a back end yet, we will use a mock prompt
-        
-        // mock prompts, will be replaced with API when available
-    let example_prompts= ["Who do you trust most? Why?",
-                            "What are your strengths in relationships (kindness, empathy, etc.)?",
-                            "How do you draw strength from loved ones?",
-                            "What do you value most in relationships (trust, respect, sense of humor, etc.)?",
-                            "What three important things have you learned from previous relationships?",
-                            "What five traits do you value most in potential partners?",
-                            "How do you show compassion to others? How can you extend that same compassion to yourself?",
-                            "What are three things working well in your current relationship? What are three things that could be better?",
-                            "What boundaries could you set in your relationships to safeguard your own well-being?",
-                            "What do you most want your children (or future children) to learn from you?",
-                            "How can you better support and appreciate your loved ones?",
-                            "What does love mean to you? How do you recognize it in a relationship?",
-                            "List three things you'd like to tell a friend, family member, or partner.",
-                            "What difficult thoughts or emotions come up most frequently for you?",
-                            "Which emotions do you find hardest to accept (guilt, anger, disappointment, etc.)? How do you handle these emotions?",
-                            "Describe a choice you regret. What did you learn from it?",
-                            "What parts of daily life cause stress, frustration, or sadness? What can you do to change those experiences?",
-                            "What are three things that can instantly disrupt a good mood and bring you down? What strategies do you use to counter these effects?",
-                            "What are three self-defeating thoughts that show up in your self-talk? How can you reframe them to encourage yourself instead?",
-                            "What go-to coping strategies help you get through moments of emotional or physical pain?",
-                            "Who do you trust with your most painful and upsetting feelings? How can you connect with them when feeling low?",
-                            "What do you fear most? Have your fears changed throughout life?"]
-        // set mock prompt
-        document.querySelector('#prompt').innerText = example_prompts[Math.floor(Math.random()*example_prompts.length)];
+        document.querySelector('#prompt').innerText = "Creating prompt..";
+
+        // openAI api
+        let response = ''
+        fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': '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',
+            },
+            body: JSON.stringify({
+                model: 'gpt-3.5-turbo',
+                messages: [{role: 'system', content: ai_prompt}],
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            response = data.choices[0].message.content;
+            console.log(response);
+            // set prompt
+            document.querySelector('#prompt').innerText = response;
+            hasPrompt = true;
+        })
+
+    // let example_prompts= ["Who do you trust most? Why?",
+    //                         "What are your strengths in relationships (kindness, empathy, etc.)?",
+    //                         "How do you draw strength from loved ones?",
+    //                         "What do you value most in relationships (trust, respect, sense of humor, etc.)?",
+    //                         "What three important things have you learned from previous relationships?",
+    //                         "What five traits do you value most in potential partners?",
+    //                         "How do you show compassion to others? How can you extend that same compassion to yourself?",
+    //                         "What are three things working well in your current relationship? What are three things that could be better?",
+    //                         "What boundaries could you set in your relationships to safeguard your own well-being?",
+    //                         "What do you most want your children (or future children) to learn from you?",
+    //                         "How can you better support and appreciate your loved ones?",
+    //                         "What does love mean to you? How do you recognize it in a relationship?",
+    //                         "List three things you'd like to tell a friend, family member, or partner.",
+    //                         "What difficult thoughts or emotions come up most frequently for you?",
+    //                         "Which emotions do you find hardest to accept (guilt, anger, disappointment, etc.)? How do you handle these emotions?",
+    //                         "Describe a choice you regret. What did you learn from it?",
+    //                         "What parts of daily life cause stress, frustration, or sadness? What can you do to change those experiences?",
+    //                         "What are three things that can instantly disrupt a good mood and bring you down? What strategies do you use to counter these effects?",
+    //                         "What are three self-defeating thoughts that show up in your self-talk? How can you reframe them to encourage yourself instead?",
+    //                         "What go-to coping strategies help you get through moments of emotional or physical pain?",
+    //                         "Who do you trust with your most painful and upsetting feelings? How can you connect with them when feeling low?",
+    //                         "What do you fear most? Have your fears changed throughout life?"]
+    // document.querySelector('#prompt').innerText = example_prompts[Math.floor(Math.random()*example_prompts.length)];
 
         // get the text area
         document.querySelector('#journal_text').readOnly = false;
