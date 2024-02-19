@@ -320,8 +320,8 @@
         // if api key is not set
         if(apiKey == null){
             // prompt for api key
-            let api_key = prompt('Please enter your openAI api key');
-            localStorage.setItem('openai-api', api_key);
+            apikey = prompt('Please enter your openAI api key');
+            localStorage.setItem('openai-api', apikey);
         }
 
         // openAI api
