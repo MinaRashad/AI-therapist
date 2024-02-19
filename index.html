@@ -314,13 +314,16 @@
         
         document.querySelector('#prompt').innerText = "Creating prompt..";
 
+        // get api key from local storage
+        const apiKey = localStorage.getItem('openai-api');
+
         // openAI api
         let response = ''
         fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': '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',
+                'Authorization': apiKey,
             },
             body: JSON.stringify({
                 model: 'gpt-3.5-turbo',
