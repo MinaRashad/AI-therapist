@@ -249,7 +249,7 @@
     function getPrompt(){
 
         // get personality
-        let personality = JSON.parse(localStorage.getItem('personality'));
+        let personality = localStorage.getItem('personality');
 
         // get journals
         let journals = JSON.parse(localStorage.getItem('journals'));
@@ -279,12 +279,8 @@
         Example prompt: Write down five compliments for yourself, and try to add details. 
         Adjusted for high agreeableness: Write down five compliments for yourself, similar to how you compliment others.
 
-        Your patient today has taken a personality test and you have their results. Here are their results:
-        Extroversion: ${personality.extroversion}
-        Emotional Stability: ${personality.emotional_stability}
-        Agreeableness: ${personality.agreeableness}
-        Conscientiousness: ${personality.conscientiousness}
-        Intellect: ${personality.intellect}
+        Your patient today has taken an Enneagram personality test and found that they have a ${personality}
+        
 
         ${journals.length > 0 ? 'Here are their previous journals:\n'+journals_str : ''}
 
