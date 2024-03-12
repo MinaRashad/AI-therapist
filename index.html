@@ -150,32 +150,22 @@
                 <p>Hi, It seems like we do not have any record for your personality type</p>
                 <p>This app output is based on your personality type</p>
                 <p>So, please take this personality test first, We wont ask you to take it again!</p>
-                <p>Click <a href="https://openpsychometrics.org/tests/IPIP-BFFM/" target="_blank">here</a> to take the test</p>
+                <p>Click <a href="https://www.enneagraminstitute.com/type-descriptions/" target="_blank">here</a> to take the test</p>
 
 
                 <Form>
-                    <table>
-                        <tr>
-                            <td>Extroversion</td>
-                            <td><input type="number" name="extroversion" min="1" max="100" required></td>
-                        </tr>
-                        <tr>
-                            <td>Emotional Stability</td>
-                            <td><input type="number" name="emotional_stability" min="1" max="100" required></td>
-                        </tr>
-                        <tr>
-                            <td>Agreeableness</td>
-                            <td><input type="number" name="agreeableness" min="1" max="100" required></td>
-                        </tr>
-                        <tr>
-                            <td>Conscientiousness</td>
-                            <td><input type="number" name="conscientiousness" min="1" max="100" required></td>
-                        </tr>
-                        <tr>
-                            <td>Intellect/Imagination</td>
-                            <td><input type="number" name="intellect" min="1" max="100" required></td>
-                        </tr>
-                    </table>
+                    Enneagram: <select id="personality_type">
+                        <option value="reformer">The Reformer</option>
+                        <option value="helper">The Helper</option>
+                        <option value="achiever">The Achiever</option>
+                        <option value="individualist">The Individualist</option>
+                        <option value="investigator">The Investigator</option>
+                        <option value="loyalist">The Loyalist</option>
+                        <option value="enthusiast">The Enthusiast</option>
+                        <option value="challenger">The Challenger</option>
+                        <option value="peacemaker">The Peacemaker</option>
+
+                    </select>
                     <input type="button" name="submit" value="Submit" onclick="record_personality()">
                 </form>
                  </div>
@@ -244,23 +234,10 @@
 
     function record_personality(){
         // get values
-        var extroversion = document.querySelector('input[name="extroversion"]').value;
-        var emotional_stability = document.querySelector('input[name="emotional_stability"]').value;
-        var agreeableness = document.querySelector('input[name="agreeableness"]').value;
-        var conscientiousness = document.querySelector('input[name="conscientiousness"]').value;
-        var intellect = document.querySelector('input[name="intellect"]').value;
-
-        // put in obj
-        var personality = {
-            extroversion: extroversion,
-            emotional_stability: emotional_stability,
-            agreeableness: agreeableness,
-            conscientiousness: conscientiousness,
-            intellect: intellect
-        }
+        var personality = document.getElementById('personality_type').value;
 
         // store 
-        localStorage.setItem('personality', JSON.stringify(personality));
+        localStorage.setItem('personality', personality);
 
         // close popup
         personality_popup.style.visibility = 'hidden';
@@ -312,9 +289,9 @@
         ${journals.length > 0 ? 'Here are their previous journals:\n'+journals_str : ''}
 
         Here are some instructions for the prompts that must be followed at all times:
-        - prompt must be positive. Avoide negative prompts talking about fears, death, etc.
-        - prompt must be specific. Avoide vague prompts like "how are you feeling today?"
-        - prompt must be personal. Avoide prompts that are too general like "what is your favorite color?"
+        - prompt must be positive. Avoid negative prompts talking about fears, death, etc.
+        - prompt must be specific. Avoid vague prompts like "how are you feeling today?"
+        - prompt must be personal. Avoid prompts that are too general like "what is your favorite color?"
         - prompt must be thought-provoking. Avoide prompts that are too simple like "what did you eat today?"
 
         What is your prompt for today?
