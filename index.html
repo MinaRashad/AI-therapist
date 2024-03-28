@@ -359,6 +359,118 @@ Structured Program: Engage in an 8-week structured program like MSC, which inclu
 
 Continued Learning and Application: Apply learned skills beyond the program, integrating self-compassion into daily life and relationships.`
         
+        const example_IFS_prompts = `
+        Note: first question is initial, then follow up questions for further exploration
+
+        Type 1 (Perfectionist/The reformer):
+        - Focus on what’s right and wrong
+        - Doing things right
+        - Having the highest standards
+        - Moral correctness
+        - Rule following
+
+        Prompts:
+        Think about the part of you that strives for perfection.
+        What are the motivations and fears driving this part? (initial question)
+        How does it impact your self-view and relationships? (follow up/ or independently)
+        How can you acknowledge and support this part while fostering acceptance and flexibility? (follow up/ or independently )
+
+        Type 2 (The helper): 
+        - Giving to others to the point of self-sacrifice
+        - Seeking love and appreciation through service
+        - Struggling to acknowledge own needs
+
+        Prompts:
+        Reflect on the part of you that strongly desires to be helpful and supportive to others. 
+        What are the core beliefs and motivations of this part? 
+        How does it influence your behavior in relationships? 
+        How can you ensure that your helping behaviors come from a place of genuine care and not from a fear of being unneeded or unworthy?"
+        What challenges does this part face - what gives it stress? What is it afraid might happen to you if it’s not doing its job?
+
+        Type 3 (The achiever):
+        - Needing to achieve to be appreciated
+        - Wanting to meet goals to feel worthy
+        - Ideal performance/extremely driven/perfectionism  (more outcome-based perfectionism as opposed to process-based perfectionism in type 1)
+
+        Prompts:
+        Consider the part of you that equates value with achievement.
+        What are the insecurities and ambitions driving this part?
+        How does it shape your identity and life choices?
+        How can you validate and guide this part towards a more authentic and balanced expression of self?
+
+
+        Type 4 (The Individualist):
+        - Focus on what’s missing not what’s there
+        - Focus on grass is greener
+        - Fantasies of perfect beauty, or love, or creativity
+        - Wanting the profound, the meaningful
+        - Feeling like an outsider - no one understands me, I’m different
+
+        Prompts:
+        Explore the part of you that craves uniqueness and depth.
+        What are the desires and fears of this part?
+        How does it affect your emotional stability and self-image?
+        How can you nurture and integrate this part to foster creativity and healthy relationships?
+
+        Type 5 (The observer): 
+        - Feeling like an outsider
+        - Worrying no one will understand it/share its interests
+
+        Prompts:
+        Explore the part of you that values knowledge and understanding. 
+        What are the fears and concerns of this part?
+        How does it manifest in your approach to learning and problem-solving?
+        How can you balance your quest for information with a willingness to engage emotionally and experientially with the world around you?
+        
+        Type 6 (The loyalist):
+        - Concerns about who to trust
+        - Concerns about worst-case scenario/catastrophe/what can go wrong
+        - Looking for the cracks/not foolproof
+        
+        Prompts:
+        Consider the part of you that seeks security and certainty. 
+        What are the anxieties and worries driving this part? 
+        How does it influence your decision-making and risk-taking behaviors? 
+        How can you reassure and support this part while also cultivating courage and trust in yourself and your abilities?
+        
+        Type 7 (The enthusiast):
+        - Wanting to avoid unpleasant emotions/situations
+        - Not wanting to waste time on the mundane/boring
+        - Always seeking new projects/relationships/adventures - restlessness
+        - Being “fun” to the extent of being superficial
+        - Validation seeking through fun
+
+        Prompts:
+        Reflect on the part of you that seeks pleasure and excitement. 
+        What are the desires and aspirations of this part? 
+        How does it influence your choices and priorities in life? 
+        How can you ensure that your pursuit of joy and novelty is balanced with a grounded sense of responsibility and commitment?
+        
+        Type 8 (The challenger):
+        - Wanting to not be controlled - don’t tell me what to do
+        - Standing up for what’s right/the underdog
+        - Wanting to be the one in charge/calling the shots
+        - Bordering on aggression 
+
+        Prompts:
+        Explore the part of you that values strength and autonomy. 
+        What are the fears and vulnerabilities driving this part? 
+        How does it manifest in your relationships and interactions with others? 
+        How can you honor and empower this part while also fostering vulnerability and emotional intimacy in your connections?
+        
+        Type 9 (The peacemaker):
+        - Easy going to the extent of losing oneself
+        - Worried about displeasing/upsetting others
+        - Appeasing 
+
+        Prompts:
+        Think about the part of you that seeks harmony and avoids conflict.
+        What are the concerns and motivations of this part? 
+        How does it influence your actions and personal growth?
+        How can you support and encourage this part to express itself more fully and engage actively in life?
+
+
+        `
 // create AI prompt
         let ai_prompt = `
         You are a therapist. You help patients by providing them with a 10-word journal prompt to write about everyday.
@@ -381,6 +493,8 @@ Continued Learning and Application: Apply learned skills beyond the program, int
         The following document gives some examples of how prompts based on MSC works
         ${example_MSC_prompts}
 
+        This documents explains the personality types and IFS examples for them:
+        ${example_IFS_prompts}
 
         Your patient today has taken an Enneagram personality test and found that the top personalities are ${personality}
 
