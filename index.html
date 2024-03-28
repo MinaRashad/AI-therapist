@@ -150,11 +150,13 @@
                 <p>Hi, It seems like we do not have any record for your personality type</p>
                 <p>This app output is based on your personality type</p>
                 <p>So, please take this personality test first, We wont ask you to take it again!</p>
-                <p>Click <a href="https://www.enneagraminstitute.com/type-descriptions/" target="_blank">here</a> to take the test</p>
+                <p>Click <a href="https://www.truity.com/test/enneagram-personality-test-paged" target="_blank">here</a> to take the test</p>
 
 
                 <Form>
-                    Enneagram: <select id="personality_type">
+                    Please select the top three personality traits
+                    Top Enneagram: 
+                    <select class="personality_type">
                         <option value="reformer">The Reformer</option>
                         <option value="helper">The Helper</option>
                         <option value="achiever">The Achiever</option>
@@ -164,7 +166,32 @@
                         <option value="enthusiast">The Enthusiast</option>
                         <option value="challenger">The Challenger</option>
                         <option value="peacemaker">The Peacemaker</option>
-
+                    </select>
+                    <br>
+                    Second Enneagram:
+                    <select class="personality_type">
+                        <option value="reformer">The Reformer</option>
+                        <option value="helper">The Helper</option>
+                        <option value="achiever">The Achiever</option>
+                        <option value="individualist">The Individualist</option>
+                        <option value="investigator">The Investigator</option>
+                        <option value="loyalist">The Loyalist</option>
+                        <option value="enthusiast">The Enthusiast</option>
+                        <option value="challenger">The Challenger</option>
+                        <option value="peacemaker">The Peacemaker</option>
+                    </select>
+                    <br>
+                    Third Enneagram:
+                    <select class="personality_type">
+                        <option value="reformer">The Reformer</option>
+                        <option value="helper">The Helper</option>
+                        <option value="achiever">The Achiever</option>
+                        <option value="individualist">The Individualist</option>
+                        <option value="investigator">The Investigator</option>
+                        <option value="loyalist">The Loyalist</option>
+                        <option value="enthusiast">The Enthusiast</option>
+                        <option value="challenger">The Challenger</option>
+                        <option value="peacemaker">The Peacemaker</option>
                     </select>
                     <input type="button" name="submit" value="Submit" onclick="record_personality()">
                 </form>
@@ -234,7 +261,11 @@
 
     function record_personality(){
         // get values
-        var personality = document.getElementById('personality_type').value;
+        var personalities = document.getElementsByClassName('personality_type');
+        var personality = '';
+        for (var i = 0; i < personalities.length; i++) {
+            personality += personalities[i].value + (i == personalities.length -1? '': '&');
+        }
 
         // store 
         localStorage.setItem('personality', personality);
