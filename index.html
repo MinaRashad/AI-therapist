@@ -393,7 +393,7 @@ Continued Learning and Application: Apply learned skills beyond the program, int
         document.querySelector('#prompt').innerText = "Creating prompt..";
 
         // get api key from local storage
-        const apiKey = localStorage.getItem('openai-api');
+        let apiKey = localStorage.getItem('openai-api');
 
         // if api key is not set
         if(apiKey == null){
