@@ -384,7 +384,7 @@ Continued Learning and Application: Apply learned skills beyond the program, int
 
         Your patient today has taken an Enneagram personality test and found that the top personalities are ${personality}
 
-        ${journals.length > 0 ? 'Here are their previous journals:\n'+journals_str : ''}
+        ${journals.length > 0 ? 'Here are their previous journals:\n'+journals_str : 'they have no previous journals yet with you, its their first time.'}
 
 
         What is your prompt for today?
@@ -401,7 +401,8 @@ Continued Learning and Application: Apply learned skills beyond the program, int
             apikey = prompt('Please enter your openAI api key');
             localStorage.setItem('openai-api', apikey);
         }
-        if(apiKey == null){
+        if(apiKey == null || apiKey == '' || apiKey == 'null'){
+            apiKey = null
             return;
         }
 
@@ -436,6 +437,7 @@ Continued Learning and Application: Apply learned skills beyond the program, int
         .catch(error => {
             console.log(error);
             document.querySelector('#prompt').innerText = 'Error getting prompt. Please try again later';
+            localStorage.setItem('openai-api', null)
             return
         });
 
