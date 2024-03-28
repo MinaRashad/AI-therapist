@@ -396,16 +396,18 @@ Continued Learning and Application: Apply learned skills beyond the program, int
         let apiKey = localStorage.getItem('openai-api');
 
         // if api key is not set
-        if(apiKey == null){
+        if(apiKey == null || apiKey == '' || apiKey == 'null'){
             // prompt for api key
             apikey = prompt('Please enter your openAI api key');
             localStorage.setItem('openai-api', apikey);
         }
         if(apiKey == null || apiKey == '' || apiKey == 'null'){
             apiKey = null
+            document.querySelector('#prompt').innerText = 'Didnt recieve api key. Please try again.';
             return;
         }
 
+        console.log("Recieved key: " + apiKey);
         // openAI api
         const url = 'https://api.openai.com/v1/chat/completions';
         const data = {
