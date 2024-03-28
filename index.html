@@ -265,7 +265,7 @@
         var personalities = document.getElementsByClassName('personality_type');
         var personality = '';
         for (var i = 0; i < personalities.length; i++) {
-            personality += personalities[i].value + (i == personalities.length -1? '': '&');
+            personality += personalities[i].value + (i == personalities.length -1? '': ' & ');
         }
 
         // store 
@@ -293,34 +293,99 @@
         
         journals_str = journals.join('\n\n----------------\n\n');
 
-        // create AI prompt
+        const example_MSC_prompts = `
+        General MSC Prompts: 
+            Try to think of a mistake you made and write a letter to yourself as though you are writing one to your best friend. What tone would you use with your best friend? How would you remind them that they’re loved and worthy? How would you comfort them in the event of difficult consequences?
+
+            How about, think of yourself as a young child during a difficult moment - how can you imagine comforting and soothing yourself? What would you have most wanted to feel, hear, and understand?
+
+            Describe your day, and try replacing any negative words with descriptive ones - for example, “I had a bad meeting with my boss” -> “I had a long, challenging meeting with my boss where I felt confused and worried about my performance”
+
+            What are some differences in how you respond to your close friends' failures when compared to your own? In what ways do you speak to them versus yourself? What behaviors do you focus on? What advice do you give?
+        MSC Adjusted with Enneagram Personality Type: 
+            The Reformer
+            How do you react when you make a mistake or fall short of your own standards?
+            When was the last time you felt disappointed in yourself? How would you react to a child that says they feel the same way?
+            The Helper
+            How often do you prioritize your own needs and well-being over helping others?
+            How might you console a teenager that feels unlovable? 
+            The Achiever 
+            How do you define success, and do you allow yourself room for failure or setbacks?
+            Can you elaborate on the ways you are valuable to your family, friends or coworkers?
+            The Individualist
+            In what ways can you honor your unique identity and emotions while practicing self-acceptance?
+            How would you react if your younger self came to you, concerned about how other people thought about them?
+            The Investigator
+            Describe if you tend to withdraw or isolate yourself when facing difficulties, or do you seek out assistance?
+            Can you reflect on a moment you felt overwhelmed today? 
+            The Loyalist
+            How does your tendency to anticipate worst-case scenarios affect your ability to show yourself kindness and understanding?
+            The Enthusiast
+            How can you balance your desire for excitement and new experiences with moments of self-reflection and care?
+            Can you list the different emotions you felt today? Try adding a sentence or two as to why you felt that way. 
+            The Challenger
+            In what ways can you demonstrate vulnerability and self-acceptance without feeling a loss of power?
+            When was one moment you felt powerless? How did that make you feel?
+            The Peacemaker 
+            Do you prioritize maintaining inner peace and harmony, even if it means neglecting your own needs? If so, in what ways?
+            How do you feel after you fought with someone you loved?
+            What is a recent conflict you had with someone? Can you elaborate on the experience and how it made you feel?
+`
+
+        const MSC_theory_points = `
+        Self-Kindness: Practice being gentle, supportive, and understanding towards oneself, especially in times of difficulty or suffering.
+
+Common Humanity: Recognize that suffering is a shared human experience, fostering a sense of connection rather than isolation.
+
+Mindfulness: Cultivate awareness of present-moment experiences with clarity and balance, avoiding over-identification with negative thoughts or emotions.
+
+Self-Compassion Break: When feeling stressed or upset, engage in a brief self-compassion practice:
+
+Acknowledge suffering: "This is a moment of suffering."
+Recognize common humanity: "Suffering is a part of life."
+Offer kindness to oneself: "May I be kind to myself."
+Giving and Receiving Meditation: Direct compassion towards oneself and others by:
+
+Breathing in kindness for oneself.
+Breathing out kindness for others.
+Recognizing the interconnectedness of compassion.
+Practice Regularly: Dedicate time each day to formal meditation or informal self-compassion exercises, aiming for at least 30 minutes of practice.
+
+Embrace Difficult Emotions: When faced with challenging emotions, apply self-compassion practices like labeling emotions, finding them in the body, and offering oneself kindness.
+
+Cultivate Compassionate Relationships: Foster emotional connection and support within relationships, both giving and receiving compassion from others.
+
+Structured Program: Engage in an 8-week structured program like MSC, which includes classes, meditations, discussions, and reflective exercises.
+
+Continued Learning and Application: Apply learned skills beyond the program, integrating self-compassion into daily life and relationships.`
+        
+// create AI prompt
         let ai_prompt = `
         You are a therapist. You help patients by providing them with a 10-word journal prompt to write about everyday.
         You follow three main concepts to guide how you make your prompts:
         1. Internal family systems therapy
         2. Cognitive behavioral therapy
         3. You personalize the prompt based on the patient's personality type and their previous journals
-        
-        Here are some example prompts you have given to your patients in the past:
-        - What is something you are grateful for today?
-        - What is something you are looking forward to?
-        - How are your relationships with your family?
-        - Do you feel like you are in control of your life?
-
-        Here are some examples of how to adjust prompts based on personality types:
-        Example prompt: Write down five compliments for yourself, and try to add details. 
-        Adjusted for high agreeableness: Write down five compliments for yourself, similar to how you compliment others.
-
-        Your patient today has taken an Enneagram personality test and found that they have a ${personality}
-        
-
-        ${journals.length > 0 ? 'Here are their previous journals:\n'+journals_str : ''}
 
         Here are some instructions for the prompts that must be followed at all times:
         - prompt must be positive. Avoid negative prompts talking about fears, death, etc.
         - prompt must be specific. Avoid vague prompts like "how are you feeling today?"
         - prompt must be personal. Avoid prompts that are too general like "what is your favorite color?"
         - prompt must be thought-provoking. Avoide prompts that are too simple like "what did you eat today?"
+
+        You also have some documents that help create the prompts. 
+        
+        This document explains the theory behind MSC:
+        ${MSC_theory_points}
+
+        The following document gives some examples of how prompts based on MSC works
+        ${example_MSC_prompts}
+
+
+        Your patient today has taken an Enneagram personality test and found that the top personalities are ${personality}
+
+        ${journals.length > 0 ? 'Here are their previous journals:\n'+journals_str : ''}
+
 
         What is your prompt for today?
         `;
