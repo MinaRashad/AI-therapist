@@ -471,7 +471,31 @@ Continued Learning and Application: Apply learned skills beyond the program, int
 
 
         `
-// create AI prompt
+
+        const IFS_theory_points = `
+        Identify Parts: Recognize the existence of internal subpersonalities or "parts" within oneself, each representing different emotions, beliefs, or experiences.
+
+Understanding Roles: Understand that these parts play different roles, such as managers, exiles, or firefighters, each with its own function and purpose.
+
+Self-Compassion: Develop compassion towards all parts of oneself, acknowledging that each part emerged as a response to past experiences and serves a protective function.
+
+Trauma Awareness: Acknowledge the impact of past traumas on internal dynamics, understanding how parts may adopt extreme roles as a response to painful experiences.
+
+Self-Leadership: Cultivate the awareness of the "Self," which represents the core essence of an individual containing qualities like perspective, confidence, compassion, and acceptance.
+
+Parts Dialogue: Engage in inner dialogue with different parts of oneself, fostering understanding, compassion, and collaboration among them.
+
+Integration: Work towards integrating and harmonizing internal parts, allowing each part to express its needs while aligning with the overarching goals and values of the Self.
+
+Healing Exiles: Provide care and attention to wounded or marginalized parts (exiles), offering them comfort, validation, and healing.
+
+Self-Awareness Practices: Practice mindfulness and self-reflection to deepen understanding of internal dynamics and promote self-awareness.
+
+Practice Self-Leadership: Actively embody the qualities of the Self, such as calmness, curiosity, clarity, compassion, confidence, creativity, courage, and connectedness, in daily life and interactions with others.
+
+These actionable steps can help individuals apply the principles of the Internal Family Systems model to promote self-awareness, self-compassion, and inner harmony.
+`
+        // create AI prompt
         let ai_prompt = `
         You are a therapist. You help patients by providing them with a 10-word journal prompt to write about everyday.
         You follow three main concepts to guide how you make your prompts:
@@ -493,6 +517,9 @@ Continued Learning and Application: Apply learned skills beyond the program, int
         The following document gives some examples of how prompts based on MSC works
         ${example_MSC_prompts}
 
+        This document explains the theory behind IFS:
+        ${IFS_theory_points}
+        
         This documents explains the personality types and IFS examples for them:
         ${example_IFS_prompts}
 
@@ -521,7 +548,6 @@ Continued Learning and Application: Apply learned skills beyond the program, int
             return;
         }
 
-        console.log("Recieved key: " + apiKey);
         // openAI api
         const url = 'https://api.openai.com/v1/chat/completions';
         const data = {
