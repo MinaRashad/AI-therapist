@@ -519,7 +519,7 @@ These actionable steps can help individuals apply the principles of the Internal
 
         This document explains the theory behind IFS:
         ${IFS_theory_points}
-        
+
         This documents explains the personality types and IFS examples for them:
         ${example_IFS_prompts}
 
@@ -542,6 +542,7 @@ These actionable steps can help individuals apply the principles of the Internal
             apikey = prompt('Please enter your openAI api key');
             localStorage.setItem('openai-api', apikey);
         }
+        
         if(apiKey == null || apiKey == '' || apiKey == 'null'){
             apiKey = null
             document.querySelector('#prompt').innerText = 'Didnt recieve api key. Please try again.';
@@ -592,11 +593,12 @@ These actionable steps can help individuals apply the principles of the Internal
     function save_journal(){
         // get journal
         let journal = document.querySelector('#journal_text').value;
-
+        let ai_prompt = document.querySelector('#prompt').innerText;
+        
         // get date
         let date = new Date();
 
-        day = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+        day = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
         // get journals
         let journals = JSON.parse(localStorage.getItem('journals'));
 
@@ -611,7 +613,7 @@ These actionable steps can help individuals apply the principles of the Internal
         }
 
         // add the date to the journal
-        journal = `${day}\n\n${journal}`;
+        journal = `${day} - ${ai_prompt}\n\n${journal}`;
 
         // add journal to journals
         journals.push(journal);
