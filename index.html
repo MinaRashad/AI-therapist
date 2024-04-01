@@ -256,7 +256,7 @@
 
         // if wrote today
         if(didWriteToday()){
-            disableUIUntilTomorrow();
+            //disableUIUntilTomorrow();
         }
     });
 
@@ -622,9 +622,9 @@ These actionable steps can help individuals apply the principles of the Internal
         localStorage.setItem('journals', JSON.stringify(journals));
 
         // store date
-        localStorage.setItem('lastjournalDate', day);
+        //localStorage.setItem('lastjournalDate', day);
 
-        disableUIUntilTomorrow();
+        resetForm();
 
     }
 
@@ -656,7 +656,7 @@ These actionable steps can help individuals apply the principles of the Internal
         document.querySelector('#journal_text').placeholder = 'Journal saved!';
 
         // change message
-        document.querySelector('#message').innerHTML = 'Journal saved! Good Job! Come tomorrow for a new prompt!';
+        document.querySelector('#message').innerHTML = 'Journal saved! Good Job! Come tomorrow for a new prompt';
 
         // get last journal text
         let journals = JSON.parse(localStorage.getItem('journals'));
@@ -664,6 +664,23 @@ These actionable steps can help individuals apply the principles of the Internal
 
         // set last journal text
         document.querySelector('#journal_text').value = last_journal;
+
+    }
+
+
+    function resetForm(){
+        // disable button
+        document.querySelector('#save_journal').disabled=true
+
+        // make text area read only
+        document.querySelector('#journal_text').readOnly = true;
+
+        // change message
+        document.querySelector('#message').innerHTML = 'Journal saved! Good Job!';
+
+
+        // set last journal text
+        document.querySelector('#journal_text').value = '';
 
     }
 
