@@ -508,6 +508,7 @@ These actionable steps can help individuals apply the principles of the Internal
         - prompt must be specific. Avoid vague prompts like "how are you feeling today?"
         - prompt must be personal. Avoid prompts that are too general like "what is your favorite color?"
         - prompt must be thought-provoking. Avoide prompts that are too simple like "what did you eat today?"
+        - Prompt must be simple. avoid prompts with too many factors at the same time.
 
         You also have some documents that help create the prompts. 
         
@@ -525,7 +526,9 @@ These actionable steps can help individuals apply the principles of the Internal
 
         Your patient today has taken an Enneagram personality test and found that the top personalities are ${personality}
 
-        ${journals.length > 0 ? 'Here are their previous journals:\n'+journals_str : 'they have no previous journals yet with you, its their first time.'}
+        ${journals.length > 0 ? 'Here are their previous journals accompanied with pervious prompts:\n'+journals_str : 'they have no previous journals yet with you, its their first time.'}
+
+        Please make sure to make prompts new and creative from previous prompts given to the user.
 
 
         What is your prompt for today?
